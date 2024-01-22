@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header bg-primary d-flex justify-content-between">
+        <div class="col-6">
+          Product List
+        </div>
+        <div class="col-6 text-end">
+          <button type="button" class="btn btn-sm btn-success" (click)="openSidePanel()">New</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4" *ngIf="isSidePanelVisible">
+    <div class="card">
+      <div class="card-header bg-primary d-flex justify-content-between">
+        <div class="col-6">
+          New Product
+        </div>
+        <div class="col-6 text-end">
+          <button type="button" class="btn btn-sm btn-success" (click)="closeSidePanel()">Close</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <label>SKU</label>
+            <input type="text" [(ngModel)]="productObject.productSku" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Name</label>
+            <input type="text" [(ngModel)]="productObject.productName" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Short Name</label>
+            <input type="text" [(ngModel)]="productObject.productShortName" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="productObject.productPrice" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Category</label>
+            <select [(ngModel)]="productObject.categoryId" class="form-select">
+              <option *ngFor="let cat of categoryList" [value]="cat.categoryId"> {{ cat.categoryName }}</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label>Delivery Time Span</label>
+            <input type="text" [(ngModel)]="productObject.deliveryTimeSpan" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Image URL</label>
+            <input type="text" [(ngModel)]="productObject.productImageUrl" class="form-control">
+          </div>
+          <div class="col-6">
+            <label>Description</label>
+            <!--            <textarea [(ngModel)]="productObject.productDescription" class="form-control"> </textarea>-->
+            <input [(ngModel)]="productObject.productDescription" class="form-control"/>
+          </div>
+          <div class="mt-3 d-flex justify-content-between">
+            <button type="button" class="btn btn-sm btn-danger">Reset</button>
+            <button type="button" class="btn btn-sm btn-success" (click)="onSave()">Create Product</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
