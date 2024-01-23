@@ -16,7 +16,7 @@ import {ProductService} from "../../../services/product/product.service";
 })
 export class ProductsComponent implements OnInit {
 
-  isSidePanelVisible: boolean = true
+  isSidePanelVisible: boolean = false
   productObject: any = {
     "productId": 0,
     "productSku": "",
@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     "deliveryTimeSpan": "",
     "categoryId": 0,
     "productImageUrl": ""
+
   }
 
   categoryList: any [] = []
@@ -54,15 +55,50 @@ export class ProductsComponent implements OnInit {
   }
 
   onSave() {
-    debugger
+    // debugger
     this.productServices.saveProduct(this.productObject).subscribe((res: any) => {
       if (res.result) {
         alert("Product Created")
         this.getProducts()
       } else {
+        console.log("Product NOT Created.....")
         alert(res.message)
       }
     })
+  }
+
+  onUpdate() {
+    this.productServices.updateProduct(this.productObject).subscribe((res: any) => {
+      if (res.result) {
+        alert("Product Updated")
+        this.getProducts()
+      } else {
+        console.log("Product NOT Updated.....")
+        alert(res.message)
+      }
+    })
+  }
+
+  onEdit(item: any) {
+
+    this.productObject = item
+    this.openSidePanel()
+  }
+
+
+  onDelete(id: any) {
+    const isDelete = confirm("Are you sure you want to delete")
+    if (isDelete) {
+      this.productServices.deleteProduct(id).subscribe((res: any) => {
+        if (res.result) {
+          alert("Product Deleted")
+          this.getProducts()
+        } else {
+          console.log("Product NOT Deleted.....")
+          alert(res.message)
+        }
+      })
+    }
   }
 
   openSidePanel() {

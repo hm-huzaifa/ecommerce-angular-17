@@ -6,27 +6,47 @@ import {Constant} from "../constant/constant";
   providedIn: 'root'
 })
 export class ProductService {
-  data: any;
 
   constructor(private http: HttpClient) {
   }
 
   getCategory() {
-    console.log("Get Categories...")
-    // return this.http.get(Constant.API_END_POINT + Constant.METHOD.GET_ALL_CATEGORY, requestOptions)
-    this.data = this.http.get("http://freeapi.miniprojectideas.com/api/BigBasket/GetAllCategory")
-    console.log("Categories: ", this.data)
-    return this.data
+    return this.http.get(Constant.API_END_POINT + Constant.METHOD.GET_ALL_CATEGORY)
   }
 
   getProducts() {
-    console.log("Get Product...")
     return this.http.get(Constant.API_END_POINT + Constant.METHOD.GET_ALL_PRODUCTS)
   }
 
   saveProduct(productObject: any) {
-    console.log("Save Product...")
-    // console.log("headers: ", Constant.HEADERS.headers);
-    return this.http.get(Constant.API_END_POINT + Constant.METHOD.CREATE_PRODUCT)
+    let headers: { "Access-Control-Allow-Origin": string; accept: string; "Content-Type": string };
+    headers = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json',
+      'Access-Control-Allow-Origin': '*'
+    };
+    return this.http.post(Constant.API_END_POINT + Constant.METHOD.CREATE_PRODUCT, productObject, {headers: headers})
   }
+
+  updateProduct(productObject: any) {
+    let headers: { "Access-Control-Allow-Origin": string; accept: string; "Content-Type": string };
+    headers = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json',
+      'Access-Control-Allow-Origin': '*'
+    };
+    return this.http.post(Constant.API_END_POINT + Constant.METHOD.UPDATE_PRODUCT, productObject, {headers: headers})
+  }
+
+  deleteProduct(id: any) {
+    let headers: { "Access-Control-Allow-Origin": string; accept: string; "Content-Type": string };
+    headers = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json',
+      'Access-Control-Allow-Origin': '*'
+    };
+    return this.http.get(Constant.API_END_POINT + Constant.METHOD.DELETE_PRODUCT + id, {headers: headers})
+  }
+
+
 }

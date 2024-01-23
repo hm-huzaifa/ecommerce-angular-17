@@ -6,11 +6,13 @@ const headers = new HttpHeaders({
 });
 
 export const Constant = {
-  API_END_POINT: 'http://freeapi.miniprojectideas.com/api/BigBasket',
+  API_END_POINT: 'http://freeapi.miniprojectideas.com/api/BigBasket/',
   METHOD: {
     GET_ALL_PRODUCTS: 'GetAllProducts',
     GET_ALL_CATEGORY: 'GetAllCategory',
     CREATE_PRODUCT: 'CreateProduct',
+    UPDATE_PRODUCT: 'UpdateProduct',
+    DELETE_PRODUCT: 'DeleteProductById?id=',
   },
   HEADERS: headers,
 }
